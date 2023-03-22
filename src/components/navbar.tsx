@@ -18,8 +18,11 @@ export const Navbar: React.FC = () => {
         <Link fontWeight="bold" href="/" p={4} variant="link">
         Wallet
         </Link>
+      
       </NextLink>
 
+
+      <Link fontWeight="bold" href="/contract" p={4} variant="link">Contract</Link>
       <HStack flexGrow={1} justify="flex-end" p={4} spacing={{ base: 6, sm: 2 }}>
         <ConnectWallet/>
         <IconButton

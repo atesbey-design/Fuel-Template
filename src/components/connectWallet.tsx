@@ -1,18 +1,13 @@
 
-import { Button, Heading, Icon, Stack, Wrap, WrapItem,Text, useColorModeValue } from '@chakra-ui/react'
+import { Button, Text, useColorModeValue } from '@chakra-ui/react'
 
 import { useEffect, useState } from 'react'
-import { useColorMode } from '@chakra-ui/react';
 declare global {
   interface Window {
     fuel?: any;
   }
 }
-
-
-
 const ConnectWallet = () => {
-    const [counter, setCounter] = useState<number>(0);
     const [connected, setConnected] = useState<boolean>(false);
     const [account, setAccount] = useState<string>("");
     const [isLoadingTx, setIsLoadingTx] = useState(false);
@@ -22,10 +17,7 @@ const ConnectWallet = () => {
           checkConnection();
           setIsLoadingTx(false);
         }, 200);
-        if (connected) {
-          setCounter(counter + 1);
-          console.log("counter: ", counter);
-        }
+       
       }, [account, connected]);
     
       async function connect() {
@@ -34,6 +26,7 @@ const ConnectWallet = () => {
             await window.fuel.connect();
             const accounts = await window.fuel.accounts();
             setAccount(accounts[0]);
+            console.log("accountbalance: ", accounts[0].balance);
             setConnected(true);
           } catch (err) {
             console.log("error connecting: ", err);
@@ -70,20 +63,13 @@ const ConnectWallet = () => {
                 backgroundPosition: "right bottom",
                 transition: "all 0.4s ease-in-out",
                 border: "1px solid #00ff00",
-             
-                
-
             } : { 
                 backgroundColor: "transparent",
-
-                borderColor:"linear-gradient(90deg, #F60603, #D5FD0A)",
-            
+                borderColor:"linear-gradient(90deg, #F60603, #D5FD0A)",           
                 backgroundSize: "200% 100%",
                 backgroundPosition: "right bottom",
                 transition: "all 0.4s ease-in-out",
-                border: "1px solid #00ff00",
-              
-
+                border: "1px solid #00ff00",           
              }
           }
         >
